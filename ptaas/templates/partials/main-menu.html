@@ -1,0 +1,52 @@
+<ul class="sidebar-menu">
+  <li class="header">MENU</li>
+  <li class="active">
+    <a href="/">
+      <i class="glyphicon glyphicon-home"></i> <span>Home</span>
+    </a>
+  </li>
+  <li class="treeview">
+    <a href="#">
+      <i class="glyphicon glyphicon-bookmark"></i>
+      <span>Projects</span>
+      <span class="pull-right-container">
+        <i class="glyphicon glyphicon-menu-down pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{% url 'admin:projects_project_add' %}">New Project</a></li>
+      <li><a href="{% url 'admin:projects_project_changelist' %}">View Projects</a></li>
+      <li><a href="#">Switch to</a></li>
+    </ul>
+  </li>
+  <li class="treeview">
+    <a href="#">
+      <i class="glyphicon glyphicon-book"></i>
+      <span>Inspection</span>
+      <span class="pull-right-container">
+        <i class="glyphicon glyphicon-menu-down pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{% url 'admin:inspections_hostinspection_add' %}">New Inspection</a></li>
+      <li><a href="{% url 'admin:inspections_hostinspection_changelist' %}">View Inspections</a></li>
+      <li><a href="#">Summary</a></li>
+    </ul>
+  </li>
+  <li class="treeview">
+    <a href="#">
+      <i class="glyphicon glyphicon-eye-open"></i>
+      <span>Scripts and Vulnerabilities</span>
+      <span class="pull-right-container">
+        <i class="glyphicon glyphicon-menu-down pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{% url 'admin:scripts_script_add' %}">New Script</a></li>
+      <li><a href="{% url 'admin:scripts_script_changelist' %}">View Scripts</a></li>
+      <li><a href="{% url 'admin:scripts_vulnerability_add' %}">New Vulnerability</a></li>
+      <li><a href="{% url 'admin:scripts_vulnerability_changelist' %}">View Vulnerabilities</a></li>
+    </ul>
+  </li>
+  <li><a href="{% url 'admin:logout' %}"><i class="glyphicon glyphicon-lock"></i> <span>Logout</span></a></li>
+</ul>
