@@ -2,3 +2,4 @@ Django>=1.11,<2.0
 psycopg2
 django-bootstrap3
 django-extensions
+django-widget-tweaks>=1.4,<1.5
