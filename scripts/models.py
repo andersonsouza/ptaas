@@ -39,3 +39,31 @@ class Vulnerability(TimeStampedModel):
     class Meta:
         verbose_name = 'Vulnerability'
         verbose_name_plural = 'Vulnerabilities'
+
+
+class Trigger(models.Model):
+
+    MATCH_NULL = 0
+    MATCH_NOT_NULL = 1
+    MATCH_INTEGER_VALUE = 2
+    MATCH_STRING = 3
+    MATCH_REGEX = 4
+
+    MATCH_CHOICES = (
+        (MATCH_NULL, 'Null/empty values'),
+        (MATCH_NOT_NULL, 'Any non null/empty values'),
+        (MATCH_INTEGER_VALUE, 'The specified integer value'),
+        (MATCH_STRING, 'The specified string'),
+        (MATCH_REGEX, 'Matches against a RegEx pattern'),
+    )
+
+    script = models.ForeignKey(Script, verbose_name='Caller Script', related_name='trigger_set')
+    match_type = models.PositiveIntegerField('Match type', choices=MATCH_CHOICES, default=MATCH_REGEX)
+    match = models.TextField('Match Pattern', null=True, blank=True)
+    run_script = models.ForeignKey(Script, verbose_name='Run script', related_name='triggeredby_set')
+    run_parameters = models.TextField('Run parameters')
+    associated_vulnerability = models.ForeignKey(Vulnerability, verbose_name='Associated Vulnerability', null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Script Trigger'
+        verbose_name_plural = 'Script Triggers'

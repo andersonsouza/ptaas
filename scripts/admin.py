@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin.decorators import register
 
 from scripts.models import ScriptCategory, Script, Vulnerability, \
-    VulnerabilityCategory
+    VulnerabilityCategory, Trigger
 
 
 @register(ScriptCategory)
@@ -22,4 +22,9 @@ class VulnerabilityCategoryAdmin(admin.ModelAdmin):
 
 @register(Vulnerability)
 class VulnerabilityAdmin(admin.ModelAdmin):
+    pass
+
+
+@register(Trigger)
+class TriggerAdmin(admin.ModelAdmin):
     pass
