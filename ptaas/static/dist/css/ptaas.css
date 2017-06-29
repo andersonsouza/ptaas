@@ -1,0 +1,13 @@
+.row-bordered:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #eee;
+  margin: 0 15px;
+}
+
+.row-bordered:before {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #eee;
+  margin: 0 15px;
+}
