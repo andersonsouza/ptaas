@@ -25,6 +25,12 @@ class Script(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def assemble_command(self, params={}):
+        try :
+            return self.code % params
+        except:
+            raise Exception('Fail to assemble command: Invalid parameters.')
+
 
 class VulnerabilityCategory(models.Model):
 
