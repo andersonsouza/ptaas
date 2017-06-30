@@ -12,12 +12,18 @@ class ScriptCategory(models.Model):
         verbose_name = 'Script Category'
         verbose_name_plural = 'Script Categories'
 
+    def __str__(self):
+        return self.category
+
 
 class Script(TimeStampedModel):
 
     category = models.ForeignKey(ScriptCategory, verbose_name='Category of the script.')
     name = models.CharField('Script name', max_length=100)
     code = models.TextField('Script code')
+
+    def __str__(self):
+        return self.name
 
 
 class VulnerabilityCategory(models.Model):
@@ -27,6 +33,9 @@ class VulnerabilityCategory(models.Model):
     class Meta:
         verbose_name = 'Vulnerability Category'
         verbose_name_plural = 'Vulnerability Categories'
+
+    def __str__(self):
+        return self.category
 
 
 class Vulnerability(TimeStampedModel):
@@ -39,6 +48,9 @@ class Vulnerability(TimeStampedModel):
     class Meta:
         verbose_name = 'Vulnerability'
         verbose_name_plural = 'Vulnerabilities'
+
+    def __str__(self):
+        return self.name
 
 
 class Trigger(models.Model):
@@ -67,3 +79,6 @@ class Trigger(models.Model):
     class Meta:
         verbose_name = 'Script Trigger'
         verbose_name_plural = 'Script Triggers'
+
+    def __str__(self):
+        return '%s: %s' % (self.get_match_type_display(), self.match or '')

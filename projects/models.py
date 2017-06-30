@@ -21,6 +21,9 @@ class Project(OwnableMixin, TimeStampedModel):
     name = models.CharField('Project Name', max_length=100)
     status = models.PositiveIntegerField('Status', choices=STATUS_CHOICES, default=STATUS_NEW)
 
+    def __str__(self):
+        return self.name
+
 
 class Host(TimeStampedModel):
 
@@ -28,6 +31,9 @@ class Host(TimeStampedModel):
     name = models.CharField('Host Name', max_length=100)
     description = models.TextField('Host Description', null=True, blank=True)
     fqnd = models.CharField('FQND', null=True, blank=True, max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class NetworkAdress(models.Model):
@@ -47,3 +53,6 @@ class NetworkAdress(models.Model):
     class Meta:
         verbose_name = 'Network Address'
         verbose_name_plural = 'Network Adresses'
+
+    def __str__(self):
+        return '%s: %s' % (self.get_protocol_display(), self.ip_address)
