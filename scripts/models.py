@@ -79,7 +79,6 @@ class Trigger(models.Model):
     match_type = models.PositiveIntegerField('Match type', choices=MATCH_CHOICES, default=MATCH_REGEX)
     match = models.TextField('Match Pattern', null=True, blank=True)
     run_script = models.ForeignKey(Script, verbose_name='Run script', related_name='triggeredby_set')
-    run_parameters = models.TextField('Run parameters')
     associated_vulnerability = models.ForeignKey(Vulnerability, verbose_name='Associated Vulnerability', null=True, blank=True)
 
     class Meta:
@@ -88,3 +87,25 @@ class Trigger(models.Model):
 
     def __str__(self):
         return '%s: %s' % (self.get_match_type_display(), self.match or '')
+
+    @property
+    def parameters(self):
+        parameters = {}
+        for parameter in self.parameter_set.all():
+            parameters.update({parameter.key: parameter.value})
+        return parameters
+
+
+class TriggerParameter(models.Model):
+
+    trigger = models.ForeignKey(Trigger, verbose_name='Trigger', related_name='parameter_set')
+    key = models.TextField('Parameter Key', max_length=100)
+    value = models.TextField('Parameter Value', max_length=1000)
+
+    class Meta:
+        verbose_name = 'Trigger Parameter'
+        verbose_name_plural = 'Triggers Parameters'
+        unique_together = ('trigger', 'key')
+
+    def __str__(self):
+        return '%s: %s' % (self.key, self.value)
