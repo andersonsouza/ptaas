@@ -6,14 +6,17 @@ from projects.models import Project, Host, NetworkAdress
 
 @register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('id', 'name', 'status')
 
 
 @register(Host)
 class HostAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('name', 'fqnd')
 
 
 @register(NetworkAdress)
 class NetworkAddressAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('ip_address', 'protocol')

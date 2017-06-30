@@ -12,7 +12,8 @@ class ScriptCategoryAdmin(admin.ModelAdmin):
 
 @register(Script)
 class ScriptAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('name', 'category')
 
 
 @register(VulnerabilityCategory)
@@ -22,9 +23,11 @@ class VulnerabilityCategoryAdmin(admin.ModelAdmin):
 
 @register(Vulnerability)
 class VulnerabilityAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('name', 'category', 'report_template_file')
 
 
 @register(Trigger)
 class TriggerAdmin(admin.ModelAdmin):
-    pass
+    
+    list_display = ('id', 'script', 'match_type', 'match', 'run_script', 'parameters')

@@ -6,9 +6,11 @@ from inspections.models import HostInspection, HostInspectionVulnerability
 
 @register(HostInspection)
 class HostInspectionAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('id', 'status', 'host', 'script')
 
 
 @register(HostInspectionVulnerability)
 class HostInspectionVulnerabilityAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('id', 'vulnerability_detected', 'host_inspection')
