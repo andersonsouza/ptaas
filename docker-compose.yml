@@ -12,3 +12,14 @@ services:
       - "8080:8080"
     depends_on:
       - db
+      - migration
+  migration:
+    build: .
+    command: python3 manage.py migrate
+    depends_on:
+      - makemigrations
+  makemigrations:
+    build: .
+    command: python3 manage.py makemigrations
+    depends_on:
+      - db
