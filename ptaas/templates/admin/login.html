@@ -1,0 +1,31 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div id="content-main" class="box box-success">
+    <form role="form" method="post" action="">
+		<div class="box-header">
+			<h3 class="box-title text-success">{% trans 'PTaaS' %}</h3>
+			<p class="help-block">Provide your credentials to access the system.</p>
+		</div>
+		<div class="box-body">
+			{% if form.errors %}
+			    <p class="errornote">
+			    {% if form.errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+			    </p>
+			    {{ form.non_field_errors }}
+			{% endif %}
+			{% for field in form %}
+			    {{ field.label_tag }}
+			    {{ field|add_class:"form-control" }}
+			{% endfor %}
+			{% csrf_token %}
+		</div>
+		<div class="box-footer">
+			<input type="submit" value="{% trans 'Log in' %}"
+				class="default btn btn-success" name="_login" />
+		</div>
+	</form>
+</div>
+{% endblock %}
