@@ -4,11 +4,11 @@ from django.db import models
 from django_extensions.db.models import TimeStampedModel
 
 from common.models import OwnableMixin, ProccessAwareMixin
-from projects.models import Host
+from projects.models import Host, NetworkAdress
 from scripts.models import Script, Vulnerability, Trigger
 
 
-class HostInspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
+class Inspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
 
     STATUS_QUEUED = 1
     STATUS_RUNNING = 2
@@ -23,6 +23,7 @@ class HostInspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
 
     status = models.PositiveIntegerField('Status', choices=STATUS_CHOICES, default=STATUS_QUEUED)
     host = models.ForeignKey(Host, verbose_name='Target Host')
+    network_addres = models.ForeignKey(NetworkAdress, verbose_name='Target Host')
     script = models.ForeignKey(Script, verbose_name='Executed Script')
     triggered_by = models.ForeignKey(Trigger, verbose_name='Triggered by', null=True, blank=True)
 
@@ -34,15 +35,15 @@ class HostInspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
         return '#%s %s: %s' % (self.pk, self.get_status_display(), self.host)
 
 
-class HostInspectionVulnerability(TimeStampedModel):
+class InspectionVulnerability(TimeStampedModel):
     
-    host_inspection = models.ForeignKey(HostInspection, verbose_name='Host Inspection')
+    inspection = models.ForeignKey(Inspection, verbose_name='Inspection')
     vulnerability_detected = models.ForeignKey(Vulnerability, verbose_name='Vulnerability Detected')
     extended_data = models.TextField('Extended Data')
     
     class Meta:
-        verbose_name = 'Vulnerability detected by host inspection'
-        verbose_name_plural = 'Vulnerabilities detectedd by host inspection'
+        verbose_name = 'Vulnerability detected by inspection'
+        verbose_name_plural = 'Vulnerabilities detectedd by inspection'
 
     def __str__(self):
         return '#%s: %s' % (self.pk, self.vulnerability_detected)

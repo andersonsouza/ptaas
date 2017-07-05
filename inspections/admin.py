@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django.contrib.admin.decorators import register
 
-from inspections.models import HostInspection, HostInspectionVulnerability
+from inspections.models import Inspection, InspectionVulnerability
 
 
-@register(HostInspection)
-class HostInspectionAdmin(admin.ModelAdmin):
+@register(Inspection)
+class InspectionAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'status', 'host', 'script')
 
 
-@register(HostInspectionVulnerability)
-class HostInspectionVulnerabilityAdmin(admin.ModelAdmin):
+@register(InspectionVulnerability)
+class InspectionVulnerabilityAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'vulnerability_detected', 'host_inspection')
+    list_display = ('id', 'vulnerability_detected', 'inspection')
