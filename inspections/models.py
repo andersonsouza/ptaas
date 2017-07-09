@@ -1,24 +1,28 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.transaction import atomic
 from django_extensions.db.models import TimeStampedModel
 
-from common.models import OwnableMixin, ProccessAwareMixin
+from common.models import OwnableMixin
+from inspections.proccess import ProcessManager
 from projects.models import Host, NetworkAdress
 from scripts.models import Script, Vulnerability, Trigger
 
 
-class Inspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
+class Inspection(OwnableMixin, TimeStampedModel):
 
     STATUS_QUEUED = 1
     STATUS_RUNNING = 2
     STATUS_EXECUTED = 3
     STATUS_CANCELED = 4
+    STATUS_FAILED = 5
     STATUS_CHOICES = (
         (1, 'Queued'),
         (2, 'Running'),
         (3, 'Executed'),
-        (4, 'Canceled')
+        (4, 'Canceled'),
+        (5, 'Failed')
     )
 
     status = models.PositiveIntegerField('Status', choices=STATUS_CHOICES, default=STATUS_QUEUED)
@@ -33,6 +37,38 @@ class Inspection(OwnableMixin, ProccessAwareMixin, TimeStampedModel):
 
     def __str__(self):
         return '#%s %s: %s' % (self.pk, self.get_status_display(), self.host)
+
+    @property
+    def parameters(self):
+        parameters =  self.triggered_by.parameters if (self.triggered_by) else {}
+        parameters['host_fqnd'] = self.host.fqnd
+        parameters['host_ip_address'] = self.network_addres.ip_address
+        parameters['host_protocol'] = self.network_addres.protocol
+        return parameters
+
+    @atomic
+    def run(self):
+        '''Send the inspection to be executed by the Process Manager.'''
+        command = self.script.assemble_command(self.parameters)
+        process = ProcessManager.run(self.id, command, self.update_status)
+        self.status = self.STATUS_RUNNING
+        self.save()
+        return process
+
+    def update_status(self, process):
+        '''Callback method to parse the process output and update the inspection status.'''
+        output, error = process.communicate()
+        self.status = self.STATUS_FAILED if error else self.STATUS_EXECUTED
+        self.save()
+        for new_script in self.script.parse_output(output):
+            new_inspection = Inspection.objects.create(
+                owner = self.owner,
+                host = self.host,
+                network_addres = self.network_addres,
+                script = new_script['script'],
+                triggered_by = new_script['trigger'],
+            )
+            new_inspection.run()
 
 
 class InspectionVulnerability(TimeStampedModel):

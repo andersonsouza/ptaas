@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 
+from datetime import datetime
+
+from django.core.validators import RegexValidator
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 
@@ -30,6 +33,16 @@ class Script(TimeStampedModel):
             return self.code % params
         except:
             raise Exception('Fail to assemble command: Invalid parameters.')
+
+    def parse_output(self, output):
+        new_scripts = []
+        for trigger in self.trigger_set.all():
+            script = trigger.parse_output(output)
+            if script:
+                print('[%s] New script triggered: %s' 
+                      % (datetime.now().strftime('%d/%b/%Y %H:%M:%S'), script['script'].code))
+                new_scripts.append(script)
+        return new_scripts
 
 
 class VulnerabilityCategory(models.Model):
@@ -94,6 +107,44 @@ class Trigger(models.Model):
         for parameter in self.parameter_set.all():
             parameters.update({parameter.key: parameter.value})
         return parameters
+
+    def __parse_output_null(self, output):
+        return True if (output == None) else False
+
+    def __parse_output_not_null(self, output):
+        return False if (output == None) else True
+
+    def __parse_output_integer_value(self, output):
+        return True if (self.match == output) else False
+
+    def __parse_output_string(self, output):
+        return True if (self.match in output) else False
+
+    def __parse_output_regex(self, output):
+        try:
+            r = RegexValidator(self.match)
+            r(output)
+            return True
+        except:
+            return False
+        
+        # return True if (Regex(self.match).parseString(output)) else False
+
+    def parse_output(self, output):
+        if self.match_type == self.MATCH_NULL:
+            match = self.__parse_output_null(output)
+        elif self.match_type == self.MATCH_NOT_NULL:
+            match = self.__parse_output_not_null(output)
+        elif self.match_type == self.MATCH_INTEGER_VALUE:
+            match = self.__parse_output_integer_value(output)
+        elif self.match_type == self.MATCH_STRING:
+            match = self.__parse_output_string(output)
+        elif self.match_type == self.MATCH_REGEX:
+            match = self.__parse_output_regex(output)
+        else:
+            raise Exception('Invalid Match Type: %s' % self.match_type)
+
+        return {'script': self.run_script, 'parameters': self.parameters, 'trigger': self} if match else None
 
 
 class TriggerParameter(models.Model):
