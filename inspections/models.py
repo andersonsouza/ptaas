@@ -61,6 +61,7 @@ class Inspection(OwnableMixin, TimeStampedModel):
         self.status = self.STATUS_FAILED if error else self.STATUS_EXECUTED
         self.save()
         for new_script in self.script.parse_output(output):
+            InspectionVulnerability.register(self, new_script['trigger'], output)
             new_inspection = Inspection.objects.create(
                 owner = self.owner,
                 host = self.host,
@@ -83,3 +84,17 @@ class InspectionVulnerability(TimeStampedModel):
 
     def __str__(self):
         return '#%s: %s' % (self.pk, self.vulnerability_detected)
+    
+    @staticmethod
+    def register(inspection, trigger, extended_data):
+        already_detected = InspectionVulnerability.objects.filter(
+            inspection=inspection,
+            vulnerability_detected=trigger.associated_vulnerability
+        ).exists()
+        if not already_detected:
+            detected = InspectionVulnerability.objects.create(
+                inspection=inspection,
+                vulnerability_detected=trigger.associated_vulnerability,
+                extended_data=extended_data
+            )
+            return detected
