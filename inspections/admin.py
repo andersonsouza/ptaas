@@ -15,12 +15,12 @@ class InspectionAdmin(admin.ModelAdmin):
     list_display = ('id', 'status', 'host', 'script', 'run_link')
 
     def run_link(self, obj):
-        return mark_safe('<a href="%s">Run</a>' % reverse('admin:run', args=(obj.pk,)))
+        return mark_safe('<a href="%s">Run</a>' % reverse('admin:inspection_run', args=(obj.pk,)))
 
     def get_urls(self):
         urls = super(InspectionAdmin, self).get_urls()
         my_urls = [
-            url(r'^run/([0-9]*)/$', self.run_view, name='run'),
+            url(r'^run/([0-9]*)/$', self.run_view, name='inspection_run'),
         ]
         return my_urls + urls
 
