@@ -8,7 +8,7 @@ from django.urls.base import reverse
 from django.utils.safestring import mark_safe
 
 from inspections.models import Inspection
-from projects.models import Project, Host, NetworkAdress
+from projects.models import Project, Host, NetworkAddress
 
 
 @register(Project)
@@ -53,7 +53,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 class NetworkAddressInline(admin.TabularInline):
 
-    model = NetworkAdress
+    model = NetworkAddress
     list_display = ('protocol', 'ip_address')
     formfield_overrides = {
         models.TextField: {'widget': AdminTextInputWidget},
@@ -63,11 +63,11 @@ class NetworkAddressInline(admin.TabularInline):
 @register(Host)
 class HostAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'fqnd')
+    list_display = ('name', 'fqdn')
     inlines = [NetworkAddressInline, ]
 
 
-@register(NetworkAdress)
+@register(NetworkAddress)
 class NetworkAddressAdmin(admin.ModelAdmin):
 
     list_display = ('ip_address', 'protocol')

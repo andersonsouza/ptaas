@@ -30,13 +30,17 @@ class Host(TimeStampedModel):
     project = models.ForeignKey(Project, verbose_name='Project')
     name = models.CharField('Host Name', max_length=100)
     description = models.TextField('Host Description', null=True, blank=True)
-    fqnd = models.CharField('FQND', null=True, blank=True, max_length=100)
+    fqdn = models.CharField('FQDN', null=True, blank=True, max_length=100)
 
     def __str__(self):
         return self.name
 
+    @property
+    def addresses(self):
+        return self.networkaddress_set.all()
 
-class NetworkAdress(models.Model):
+
+class NetworkAddress(models.Model):
 
     PROTOCOL_IPV4 = 4
     PROTOCOL_IPV6 = 6
@@ -52,7 +56,7 @@ class NetworkAdress(models.Model):
 
     class Meta:
         verbose_name = 'Network Address'
-        verbose_name_plural = 'Network Adresses'
+        verbose_name_plural = 'Network Addresses'
 
     def __str__(self):
         return '%s: %s' % (self.get_protocol_display(), self.ip_address)

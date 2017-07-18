@@ -6,7 +6,7 @@ from django_extensions.db.models import TimeStampedModel
 
 from common.models import OwnableMixin
 from inspections.proccess import ProcessManager
-from projects.models import Host, NetworkAdress
+from projects.models import Host, NetworkAddress
 from scripts.models import Script, Vulnerability, Trigger
 
 
@@ -27,7 +27,7 @@ class Inspection(OwnableMixin, TimeStampedModel):
 
     status = models.PositiveIntegerField('Status', choices=STATUS_CHOICES, default=STATUS_QUEUED)
     host = models.ForeignKey(Host, verbose_name='Target Host')
-    network_addres = models.ForeignKey(NetworkAdress, verbose_name='Network Address', null=True, blank=True)
+    network_addres = models.ForeignKey(NetworkAddress, verbose_name='Network Address', null=True, blank=True)
     script = models.ForeignKey(Script, verbose_name='Executed Script')
     triggered_by = models.ForeignKey(Trigger, verbose_name='Triggered by', null=True, blank=True)
     output = models.TextField('Inspection Output', null=True, blank=True)
@@ -42,7 +42,7 @@ class Inspection(OwnableMixin, TimeStampedModel):
     @property
     def parameters(self):
         parameters =  self.triggered_by.parameters if (self.triggered_by) else {}
-        parameters['host_fqnd'] = self.host.fqnd
+        parameters['host_fqdn'] = self.host.fqdn
         parameters['host_ip_address'] = self.network_addres.ip_address
         parameters['host_protocol'] = self.network_addres.protocol
         return parameters
