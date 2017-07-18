@@ -30,6 +30,7 @@ class Inspection(OwnableMixin, TimeStampedModel):
     network_addres = models.ForeignKey(NetworkAdress, verbose_name='Network Address', null=True, blank=True)
     script = models.ForeignKey(Script, verbose_name='Executed Script')
     triggered_by = models.ForeignKey(Trigger, verbose_name='Triggered by', null=True, blank=True)
+    output = models.TextField('Inspection Output', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Host Inspection'
@@ -59,9 +60,10 @@ class Inspection(OwnableMixin, TimeStampedModel):
         '''Callback method to parse the process output and update the inspection status.'''
         output, error = process.communicate()
         self.status = self.STATUS_FAILED if error else self.STATUS_EXECUTED
+        self.output = output
         self.save()
         for new_script in self.script.parse_output(output):
-            InspectionVulnerability.register(self, new_script['trigger'], output)
+            InspectionVulnerability.register(self, new_script['trigger'])
             new_inspection = Inspection.objects.create(
                 owner = self.owner,
                 host = self.host,
@@ -76,7 +78,7 @@ class InspectionVulnerability(TimeStampedModel):
     
     inspection = models.ForeignKey(Inspection, verbose_name='Inspection')
     vulnerability_detected = models.ForeignKey(Vulnerability, verbose_name='Vulnerability Detected')
-    extended_data = models.TextField('Extended Data')
+    extended_data = models.TextField('Extended Data', null=True, blank=True)
     
     class Meta:
         verbose_name = 'Vulnerability detected by inspection'
@@ -86,7 +88,7 @@ class InspectionVulnerability(TimeStampedModel):
         return '#%s: %s' % (self.pk, self.vulnerability_detected)
     
     @staticmethod
-    def register(inspection, trigger, extended_data):
+    def register(inspection, trigger, extended_data=None):
         already_detected = InspectionVulnerability.objects.filter(
             inspection=inspection,
             vulnerability_detected=trigger.associated_vulnerability
