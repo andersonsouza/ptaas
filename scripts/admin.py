@@ -26,7 +26,7 @@ class VulnerabilityCategoryAdmin(admin.ModelAdmin):
 @register(Vulnerability)
 class VulnerabilityAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'category', 'report_template_file')
+    list_display = ('name', 'category',)
 
 
 class TriggerParameterInline(admin.TabularInline):

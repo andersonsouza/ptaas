@@ -63,7 +63,6 @@ class Vulnerability(TimeStampedModel):
     category = models.ForeignKey(VulnerabilityCategory, verbose_name='Category of the vulnerability')
     name = models.CharField('Vulnerability', max_length=100)
     description = models.TextField('Description', null=True, blank=True)
-    report_template_file = models.CharField('Report template file', max_length=50)
 
     class Meta:
         verbose_name = 'Vulnerability'
