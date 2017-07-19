@@ -39,9 +39,10 @@ class Script(TimeStampedModel):
         for trigger in self.trigger_set.all():
             script = trigger.parse_output(output)
             if script:
-                print('[%s] New script triggered: %s' 
-                      % (datetime.now().strftime('%d/%b/%Y %H:%M:%S'), script['script'].code))
                 new_scripts.append(script)
+                if script['script']:
+                    print('[%s] New script triggered: %s' 
+                          % (datetime.now().strftime('%d/%b/%Y %H:%M:%S'), script['script'].code))
         return new_scripts
 
 
@@ -91,7 +92,7 @@ class Trigger(models.Model):
     script = models.ForeignKey(Script, verbose_name='Caller Script', related_name='trigger_set')
     match_type = models.PositiveIntegerField('Match type', choices=MATCH_CHOICES, default=MATCH_REGEX)
     match = models.TextField('Match Pattern', null=True, blank=True)
-    run_script = models.ForeignKey(Script, verbose_name='Run script', related_name='triggeredby_set')
+    run_script = models.ForeignKey(Script, verbose_name='Run script', related_name='triggeredby_set', null=True, blank=True)
     associated_vulnerability = models.ForeignKey(Vulnerability, verbose_name='Associated Vulnerability', null=True, blank=True)
 
     class Meta:
@@ -144,7 +145,7 @@ class Trigger(models.Model):
         else:
             raise Exception('Invalid Match Type: %s' % self.match_type)
 
-        return {'script': self.run_script, 'parameters': self.parameters, 'trigger': self} if match else None
+        return {'script': self.run_script or None, 'parameters': self.parameters, 'trigger': self} if match else None
 
 
 class TriggerParameter(models.Model):

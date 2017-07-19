@@ -67,15 +67,17 @@ class Inspection(OwnableMixin, TimeStampedModel):
         self.output = output
         self.save()
         for new_script in self.script.parse_output(output):
-            InspectionVulnerability.register(self, new_script['trigger'])
-            new_inspection = Inspection.objects.create(
-                owner = self.owner,
-                host = self.host,
-                network_addres = self.network_addres,
-                script = new_script['script'],
-                triggered_by = new_script['trigger'],
-            )
-            new_inspection.run()
+            if new_script['trigger'].associated_vulnerability:
+                InspectionVulnerability.register(self, new_script['trigger'])
+            if new_script['script']:
+                new_inspection = Inspection.objects.create(
+                    owner = self.owner,
+                    host = self.host,
+                    network_addres = self.network_addres,
+                    script = new_script['script'],
+                    triggered_by = new_script['trigger'],
+                )
+                new_inspection.run()
 
 
 class InspectionVulnerability(TimeStampedModel):
