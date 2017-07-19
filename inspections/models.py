@@ -47,6 +47,10 @@ class Inspection(OwnableMixin, TimeStampedModel):
         parameters['host_protocol'] = self.network_addres.protocol
         return parameters
 
+    @property
+    def command(self):
+        return self.script.assemble_command(self.parameters)
+
     @atomic
     def run(self):
         '''Send the inspection to be executed by the Process Manager.'''

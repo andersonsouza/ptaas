@@ -3,11 +3,11 @@ from django.contrib import admin, messages
 from django.contrib.admin.decorators import register
 from django.contrib.admin.widgets import AdminTextInputWidget
 from django.db import models
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.urls.base import reverse
 from django.utils.safestring import mark_safe
 
-from inspections.models import Inspection
+from inspections.models import Inspection, InspectionVulnerability
 from projects.models import Project, Host, NetworkAddress
 
 
@@ -47,7 +47,28 @@ class ProjectAdmin(admin.ModelAdmin):
         return redirect('/projects/project/details/%s/' % pk)
     
     def details_view(self, request, pk):
-        raise Exception('Not implemented yet...')
+        project = get_object_or_404(Project, pk=pk)
+        hosts = project.host_set.all()
+        
+        inspections = Inspection.objects.filter(host__project=project)
+        inspection_stats = {
+            'queued': inspections.filter(status=Inspection.STATUS_QUEUED).count(),
+            'running': inspections.filter(status=Inspection.STATUS_RUNNING).count(),
+            'executed':  inspections.filter(status=Inspection.STATUS_EXECUTED).count(),
+            'canceled':  inspections.filter(status=Inspection.STATUS_CANCELED).count(),
+            'failed':  inspections.filter(status=Inspection.STATUS_FAILED).count(),
+            'total': inspections.filter().count(),
+        }
+        
+        detections = InspectionVulnerability.objects.filter(inspection__host__project=project)
+        
+        context = {
+            'project': project,
+            'hosts': hosts,
+            'inspection_stats': inspection_stats,
+            'detections': detections,
+        }
+        return render_to_response('project/details.html', context)
                     
 
 
