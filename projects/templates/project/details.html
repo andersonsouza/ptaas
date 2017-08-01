@@ -1,0 +1,183 @@
+{% extends "base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+    
+<div class="box">
+  <div class="box-header">
+  	<h3 class="box-title">Project Details</h3><p><small>{{ project }}</small></p>
+  </div>
+  
+  <div class="box-body">
+  	<div class="box-group" id="accordion">
+  	
+  	  <!-- Main info -->
+      <div class="panel box box-primary">
+        <div class="box-header with-border">
+          <h4 class="box-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-main" aria-expanded="true" class="text-primary">
+              Main info
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-main" class="panel-collapse collapse in" aria-expanded="true" style="">
+          <div class="box-body">
+	 	  	  <div class="col-sm-6">
+	 	  	    <dl class="dl-horizontal">
+	 	  	      <dt>Project:</dt>
+	 	  	      <dd>{{ project.name }}</dd>
+	 	  	      <dt>Status:</dt>
+	 	  	      <dd>{{ project.get_status_display }}</dd>
+	 	  	      <dt>Created at:</dt>
+	 	  	      <dd>{{ project.created }}</dd>
+	 	  	      <dt>Last modified at: </dt>
+	 	  	      <dd>{{ project.modified }}</dd>
+	 	  	    </dl>
+	 	  	  </div>
+	 	  	  <div class="col-sm-6">
+	 	  	    <dl class="dl-horizontal">
+		  	      <dt>Queued Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.queued }}</dd>
+	 	  	      <dt>Running Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.running }}</dd>
+	 	  	      <dt>Executed Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.executed }}</dd>
+	 	  	      <dt>Canceled Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.canceled }}</dd>
+	 	  	      <dt>Failed Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.failed }}</dd>
+	 	  	      <dt>Total Inspections:</dt>
+	 	  	      <dd>{{ inspection_stats.total }}</dd>
+	 	  	    </dl>
+	 	  	    <small>Note: New inspections can be automatically created on execution by script triggers.</small>
+	 	  	  </div>
+	 	  </div>
+	  	</div>
+  	  </div>
+  	  <!-- /Main info -->
+  	  
+  	  <!-- Hosts -->
+  	  <div class="panel box box-success">
+        <div class="box-header with-border">
+          <h4 class="box-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-hosts" class="collapsed text-success" aria-expanded="false">
+              Hosts
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-hosts" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+          <div class="box-body">
+			<table class="table table-hover">
+		  	  	  <thead>
+		  	  		<tr>
+		  	  		  <th>Host</th>
+		  	  		  <th>FQDN</th>
+		  	  		  <th>Addresses</th>
+		  	  		</tr>
+		  	  	  </thead>
+		  	  	  <tbody>
+		  	  	    {% for host in hosts %}
+		  	  	    <tr>
+		  	  	      <td>{{ host.name }}</td>
+		  	  	      <td>{{ host.fqdn }}</td>
+		  	  	      <td><ul>{% for address in host.addresses %}<li>{{ address }}</li>{% endfor %}</ul></td>
+		  	  	    {% endfor %}
+		  	  	    </tr>
+		  	  	  </tbody>
+		  	  	</table>
+          </div>
+        </div>
+      </div>
+      <!-- /Hosts -->
+      
+	  <!-- Vulnerabilities -->
+  	  <div class="panel box box-danger">
+        <div class="box-header with-border">
+          <h4 class="box-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vulnerabilities" class="collapsed text-danger" aria-expanded="false">
+              Vulnerabilities
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-vulnerabilities" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+          <div class="box-body">
+			<table class="table table-hover">
+		  	  	  <thead>
+		  	  		<tr>
+		  	  		  <th>Category</th>
+		  	  		  <th>Vulnerability</th>
+		  	  		  <th>Host</th>
+		  	  		  <th>Detected by</th>
+		  	  		  <th>Detected at</th>
+		  	  		  <th>Actions</th>
+		  	  		</tr>
+		  	  	  </thead>
+		  	  	  <tbody>
+		  	  	    {% for detection in detections %}
+		  	  	    <tr>
+		  	  	      <td>{{ detection.vulnerability_detected.category }}</td>
+		  	  	      <td>{{ detection.vulnerability_detected.name }}</td>
+		  	  	      <td>{{ detection.inspection.host }}</td>
+		  	  	      <td>{{ detection.inspection.command }}</td>
+		  	  	      <td>{{ detection.created }}</td>
+		  	  	      <td>
+		  	  	      	 <button type="button" class="btn btn-default show-detection-details" data-toggle="modal" data-target="#modal-vulnerabilities" data-source="/inspections/inspectionvulnerability/details/{{ detection.pk }}">
+               			   More Info
+              			 </button>
+		  	  	      </td>
+		  	  	    {% endfor %}
+		  	  	    </tr>
+		  	  	  </tbody>
+		  	  	</table>
+          </div>
+        </div>
+      </div>
+      <!-- /Vulnerabilities -->
+  	  
+  	</div>
+  </div>
+
+</div>
+
+<!-- Vulnerability details modal -->
+<div class="modal fade" id="modal-vulnerabilities">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <span aria-hidden="true">×</span></button>
+	      <h4 class="modal-title">Vulnerability Details</h4>
+	    </div>
+	    <div class="modal-body">
+	      <p>One fine body…</p>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	  <!-- /.modal-content -->
+	</div>
+</div>
+<!-- Vulnerability details modal -->
+
+{% endblock %}
+
+{% block extrascript %}
+<script>
+$("#modal-vulnerabilities").on("show.bs.modal", function(e) {
+    $(this).find(".modal-body").load($(e.relatedTarget).data("source"));
+});
+</script>
+{% endblock %}

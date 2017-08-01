@@ -1,0 +1,2549 @@
+[
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 1,
+		"fields": {
+			"app_label": "admin",
+			"model": "logentry"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 2,
+		"fields": {
+			"app_label": "auth",
+			"model": "permission"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 3,
+		"fields": {
+			"app_label": "auth",
+			"model": "group"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 4,
+		"fields": {
+			"app_label": "auth",
+			"model": "user"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 5,
+		"fields": {
+			"app_label": "contenttypes",
+			"model": "contenttype"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 6,
+		"fields": {
+			"app_label": "sessions",
+			"model": "session"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 7,
+		"fields": {
+			"app_label": "inspections",
+			"model": "inspection"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 8,
+		"fields": {
+			"app_label": "inspections",
+			"model": "inspectionvulnerability"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 9,
+		"fields": {
+			"app_label": "projects",
+			"model": "host"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 10,
+		"fields": {
+			"app_label": "projects",
+			"model": "project"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 11,
+		"fields": {
+			"app_label": "projects",
+			"model": "networkaddress"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 12,
+		"fields": {
+			"app_label": "scripts",
+			"model": "script"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 13,
+		"fields": {
+			"app_label": "scripts",
+			"model": "scriptcategory"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 14,
+		"fields": {
+			"app_label": "scripts",
+			"model": "trigger"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 15,
+		"fields": {
+			"app_label": "scripts",
+			"model": "triggerparameter"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 16,
+		"fields": {
+			"app_label": "scripts",
+			"model": "vulnerability"
+		}
+	},
+	{
+		"model": "contenttypes.contenttype",
+		"pk": 17,
+		"fields": {
+			"app_label": "scripts",
+			"model": "vulnerabilitycategory"
+		}
+	},
+	{
+		"model": "projects.host",
+		"pk": 1,
+		"fields": {
+			"created": "2017-07-19T17:11:23.247Z",
+			"modified": "2017-07-19T17:11:23.247Z",
+			"project": 1,
+			"name": "DVWA",
+			"description": "A Damn Vulnerable Web Application",
+			"fqdn": "www.dvwa.local"
+		}
+	},
+	{
+		"model": "projects.networkaddress",
+		"pk": 1,
+		"fields": {
+			"protocol": 4,
+			"ip_address": "10.0.75.1",
+			"host": 1
+		}
+	},
+	{
+		"model": "scripts.scriptcategory",
+		"pk": 1,
+		"fields": {
+			"category": "NMap NSE Scripts"
+		}
+	},
+	{
+		"model": "scripts.scriptcategory",
+		"pk": 2,
+		"fields": {
+			"category": "NMap Port Scanners"
+		}
+	},
+	{
+		"model": "scripts.scriptcategory",
+		"pk": 3,
+		"fields": {
+			"category": "SQLMap Scripts"
+		}
+	},
+	{
+		"model": "scripts.scriptcategory",
+		"pk": 4,
+		"fields": {
+			"category": "XSSer Scripts"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 1,
+		"fields": {
+			"created": "2017-07-19T14:00:15.850Z",
+			"modified": "2017-07-19T14:03:58.929Z",
+			"category": 2,
+			"name": "NMap Intense Scan, all TCP well-known ports",
+			"code": "nmap -p 1-1023 -T4 -A -v %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 2,
+		"fields": {
+			"created": "2017-07-19T14:01:05.240Z",
+			"modified": "2017-07-19T14:03:52.100Z",
+			"category": 2,
+			"name": "NMap Intense Scan, all TCP registered ports",
+			"code": "nmap -p 1024-49151 -T4 -A -v %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 3,
+		"fields": {
+			"created": "2017-07-19T14:02:51.877Z",
+			"modified": "2017-07-19T14:03:46.724Z",
+			"category": 2,
+			"name": "NMap Intense Scan, all TCP ephemeral ports",
+			"code": "nmap -p 49152-65535 -T4 -A -v %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 4,
+		"fields": {
+			"created": "2017-07-19T14:03:37.540Z",
+			"modified": "2017-07-19T14:03:37.540Z",
+			"category": 2,
+			"name": "NMap Intense Scan, all TCP ports",
+			"code": "nmap -p 1-65535-T4 -A -v %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 5,
+		"fields": {
+			"created": "2017-07-19T14:05:58.526Z",
+			"modified": "2017-07-19T14:05:58.526Z",
+			"category": 1,
+			"name": "NMap HTTP SQL Injection",
+			"code": "nmap -p %(port)s -v --script http-sql-injection %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 6,
+		"fields": {
+			"created": "2017-07-19T14:09:52.628Z",
+			"modified": "2017-07-19T14:09:52.628Z",
+			"category": 1,
+			"name": "NMap DNS Blacklist",
+			"code": "nmap -sn %(host_ip_address)s --script dns-blacklist"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 7,
+		"fields": {
+			"created": "2017-07-19T14:11:59.135Z",
+			"modified": "2017-07-19T14:11:59.135Z",
+			"category": 1,
+			"name": "NMap Finger User Retrieval",
+			"code": "nmap -sV -sC %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 8,
+		"fields": {
+			"created": "2017-07-19T14:12:59.372Z",
+			"modified": "2017-07-19T14:12:59.372Z",
+			"category": 1,
+			"name": "NMap Firewall Bypass",
+			"code": "nmap --script firewall-bypass %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 9,
+		"fields": {
+			"created": "2017-07-19T14:14:35.698Z",
+			"modified": "2017-07-19T17:25:30.898Z",
+			"category": 1,
+			"name": "NMap HTTP Apache Negotiation",
+			"code": "nmap -p %(port)s --script http-apache-negotiation --script-args http-apache-negotiation.root=/root/ %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 10,
+		"fields": {
+			"created": "2017-07-19T14:15:57.080Z",
+			"modified": "2017-07-19T14:21:34.671Z",
+			"category": 1,
+			"name": "NMap CSRF Scan",
+			"code": "nmap -p %(port)s --script http-csrf.nse %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 11,
+		"fields": {
+			"created": "2017-07-19T14:17:10.161Z",
+			"modified": "2017-07-19T14:21:46.466Z",
+			"category": 1,
+			"name": "NMap HTTP Methods",
+			"code": "nmap -p %(port)s --script http-methods %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 12,
+		"fields": {
+			"created": "2017-07-19T14:18:59.345Z",
+			"modified": "2017-07-19T17:36:50.985Z",
+			"category": 1,
+			"name": "NMap Traversal Directory",
+			"code": "nmap --script http-passwd --script-args http-passwd.root=/test/ %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 13,
+		"fields": {
+			"created": "2017-07-19T14:20:27.058Z",
+			"modified": "2017-07-19T14:20:27.058Z",
+			"category": 1,
+			"name": "NMap IP Forwarding Scan",
+			"code": "nmap -sn %(host_ip_address)s --script ip-forwarding --script-args=\"target=%(target)s\""
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 14,
+		"fields": {
+			"created": "2017-07-19T14:24:22.938Z",
+			"modified": "2017-07-19T14:24:22.938Z",
+			"category": 4,
+			"name": "XSSer Simple HTTP Scan",
+			"code": "python2.7 /bin/xsser -u \"http://%(host_fqdn)s\""
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 15,
+		"fields": {
+			"created": "2017-07-19T14:24:39.233Z",
+			"modified": "2017-07-19T14:24:39.233Z",
+			"category": 4,
+			"name": "XSSer Simple HTTPS Scan",
+			"code": "python2.7 /bin/xsser -u \"https://%(host_fqdn)s\""
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 16,
+		"fields": {
+			"created": "2017-07-19T14:25:48.983Z",
+			"modified": "2017-07-19T17:26:50.094Z",
+			"category": 1,
+			"name": "NMap DoS Slowloris",
+			"code": "nmap -p %(port)s --script http-slowloris-check %(host_fqdn)s"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 17,
+		"fields": {
+			"created": "2017-07-19T14:28:24.636Z",
+			"modified": "2017-07-19T14:28:24.636Z",
+			"category": 3,
+			"name": "SQLMap Info",
+			"code": "python2.7 /bin/sqlmap -u \"http://%(host_fqdn)s\""
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 18,
+		"fields": {
+			"created": "2017-07-19T14:28:56.279Z",
+			"modified": "2017-07-19T14:28:56.279Z",
+			"category": 3,
+			"name": "SQLMap Database Scan",
+			"code": "python2.7 /bin/sqlmap -u \"http://%(host_fqdn)s\" --dbs"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 19,
+		"fields": {
+			"created": "2017-07-19T14:29:34.635Z",
+			"modified": "2017-07-19T14:29:34.635Z",
+			"category": 3,
+			"name": "SQLMap Table Scan",
+			"code": "python2.7 /bin/sqlmap -u \"http://%(host_fqdn)s\" -D %(dbname)s --tables"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 20,
+		"fields": {
+			"created": "2017-07-19T14:30:26.517Z",
+			"modified": "2017-07-19T14:30:26.517Z",
+			"category": 3,
+			"name": "SQLMap Column Scan",
+			"code": "python2.7 /bin/sqlmap -u \"http://%(host_fqdn)s\" -D %(dbname)s -T %(table)s --columns"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 21,
+		"fields": {
+			"created": "2017-07-19T14:31:17.773Z",
+			"modified": "2017-07-19T14:31:17.773Z",
+			"category": 3,
+			"name": "SQLMap Dump Data",
+			"code": "python2.7 /bin/sqlmap -u \"http://%(host_fqdn)s\" -D %(dbname) -T %(table) -C %(column_list) --dump"
+		}
+	},
+	{
+		"model": "scripts.script",
+		"pk": 22,
+		"fields": {
+			"created": "2017-07-19T14:34:03.890Z",
+			"modified": "2017-07-19T14:34:03.890Z",
+			"category": 2,
+			"name": "NMap Intense Scan, common HTTP ports",
+			"code": "nmap -p 80,443,8000,8080 -T4 -A -v %(host_ip_address)s"
+		}
+	},
+	{
+		"model": "scripts.vulnerabilitycategory",
+		"pk": 1,
+		"fields": {
+			"category": "Injections"
+		}
+	},
+	{
+		"model": "scripts.vulnerabilitycategory",
+		"pk": 2,
+		"fields": {
+			"category": "Cross-site Attacks"
+		}
+	},
+	{
+		"model": "scripts.vulnerabilitycategory",
+		"pk": 3,
+		"fields": {
+			"category": "Denial of Service"
+		}
+	},
+	{
+		"model": "scripts.vulnerabilitycategory",
+		"pk": 4,
+		"fields": {
+			"category": "Buffer Attacks"
+		}
+	},
+	{
+		"model": "scripts.vulnerabilitycategory",
+		"pk": 5,
+		"fields": {
+			"category": "Data exposure"
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 1,
+		"fields": {
+			"created": "2017-07-19T13:25:12.789Z",
+			"modified": "2017-07-19T13:25:12.789Z",
+			"category": 1,
+			"name": "SQL Injection",
+			"description": "Code injection technique,  in which nefarious SQL statements are inserted into application  incorrectly filtered inputs."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 2,
+		"fields": {
+			"created": "2017-07-19T13:26:07.178Z",
+			"modified": "2017-07-19T13:26:07.179Z",
+			"category": 1,
+			"name": "Command Injection",
+			"description": "A technique used via a web interface in order to execute OS commands on a web server."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 3,
+		"fields": {
+			"created": "2017-07-19T13:29:27.749Z",
+			"modified": "2017-07-19T13:29:27.749Z",
+			"category": 2,
+			"name": "Cross-site Scripting (XSS)",
+			"description": "A type of security vulnerability that allows attackers to inject client-side scripts (usually JavaScript) into web pages viewed by other users."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 4,
+		"fields": {
+			"created": "2017-07-19T13:30:27.489Z",
+			"modified": "2017-07-19T13:30:27.489Z",
+			"category": 2,
+			"name": "Cross-site request forgery (CSRF)",
+			"description": "A type of malicious exploit where unauthorized commands are transmitted from a user that the web application trusts."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 5,
+		"fields": {
+			"created": "2017-07-19T13:31:50.983Z",
+			"modified": "2017-07-19T13:34:29.823Z",
+			"category": 3,
+			"name": "Denial of Service (DoS)",
+			"description": "A attack where the perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 6,
+		"fields": {
+			"created": "2017-07-19T13:34:18.175Z",
+			"modified": "2017-07-19T13:34:18.175Z",
+			"category": 3,
+			"name": "Distributed Denial of Service (DDoS)",
+			"description": "A type of Denial of Service, where the incomming traffic originates from multiple sources.."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 7,
+		"fields": {
+			"created": "2017-07-19T13:36:35.368Z",
+			"modified": "2017-07-19T13:36:35.368Z",
+			"category": 3,
+			"name": "Slowloris",
+			"description": "A type of denial of service attack, which allows a single machine to take down another machine's web server with minimal bandwidth and side effects on unrelated services and ports. It's done by opening connections to the target web server and sending a partial request in a attempt to keep many connections to the target web server open and hold them open as long as possible."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 8,
+		"fields": {
+			"created": "2017-07-19T13:42:02.748Z",
+			"modified": "2017-07-19T13:42:02.748Z",
+			"category": 4,
+			"name": "Buffer Overflow",
+			"description": "A type of attack, witch takes advantage of an anomaly where a program, while writing data to a buffer, overruns the buffer's boundary and overwrites adjacent memory locations to insert malicious code."
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 9,
+		"fields": {
+			"created": "2017-07-19T17:31:02.814Z",
+			"modified": "2017-07-19T17:31:02.814Z",
+			"category": 5,
+			"name": "HTTP File Spider",
+			"description": ""
+		}
+	},
+	{
+		"model": "scripts.vulnerability",
+		"pk": 10,
+		"fields": {
+			"created": "2017-07-19T17:35:11.363Z",
+			"modified": "2017-07-19T17:35:11.363Z",
+			"category": 5,
+			"name": "HTTP Directory Traversal",
+			"description": ""
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 1,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 5,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 2,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(443\\/tcp)(\\s)*(open)",
+			"run_script": 5,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 3,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(8000\\/tcp)(\\s)*(open)",
+			"run_script": 5,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 4,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(8080\\/tcp)(\\s)*(open)",
+			"run_script": 5,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 5,
+		"fields": {
+			"script": 5,
+			"match_type": 4,
+			"match": "Possible sqli for",
+			"run_script": null,
+			"associated_vulnerability": 1
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 6,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 10,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 7,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 11,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 8,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 9,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 9,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 14,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 10,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 16,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 11,
+		"fields": {
+			"script": 22,
+			"match_type": 4,
+			"match": "(80\\/tcp)(\\s)*(open)",
+			"run_script": 17,
+			"associated_vulnerability": null
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 12,
+		"fields": {
+			"script": 9,
+			"match_type": 4,
+			"match": "mod_negotiation enabled",
+			"run_script": null,
+			"associated_vulnerability": 9
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 13,
+		"fields": {
+			"script": 10,
+			"match_type": 4,
+			"match": "http-csrf:",
+			"run_script": null,
+			"associated_vulnerability": 4
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 14,
+		"fields": {
+			"script": 12,
+			"match_type": 4,
+			"match": "http-passwd: Directory traversal found",
+			"run_script": null,
+			"associated_vulnerability": 10
+		}
+	},
+	{
+		"model": "scripts.trigger",
+		"pk": 15,
+		"fields": {
+			"script": 16,
+			"match_type": 4,
+			"match": "(State: LIKELY VULNERABLE)*(State: VULNERABLE)*",
+			"run_script": null,
+			"associated_vulnerability": 7
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 1,
+		"fields": {
+			"trigger": 1,
+			"key": "port",
+			"value": "80"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 2,
+		"fields": {
+			"trigger": 2,
+			"key": "port",
+			"value": "443"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 3,
+		"fields": {
+			"trigger": 3,
+			"key": "port",
+			"value": "8000"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 4,
+		"fields": {
+			"trigger": 4,
+			"key": "port",
+			"value": "8080"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 5,
+		"fields": {
+			"trigger": 6,
+			"key": "port",
+			"value": "80"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 6,
+		"fields": {
+			"trigger": 7,
+			"key": "port",
+			"value": "80"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 7,
+		"fields": {
+			"trigger": 8,
+			"key": "port",
+			"value": "80"
+		}
+	},
+	{
+		"model": "scripts.triggerparameter",
+		"pk": 8,
+		"fields": {
+			"trigger": 10,
+			"key": "port",
+			"value": "80"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 1,
+		"fields": {
+			"name": "Can add log entry",
+			"content_type": 1,
+			"codename": "add_logentry"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 2,
+		"fields": {
+			"name": "Can change log entry",
+			"content_type": 1,
+			"codename": "change_logentry"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 3,
+		"fields": {
+			"name": "Can delete log entry",
+			"content_type": 1,
+			"codename": "delete_logentry"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 4,
+		"fields": {
+			"name": "Can add permission",
+			"content_type": 2,
+			"codename": "add_permission"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 5,
+		"fields": {
+			"name": "Can change permission",
+			"content_type": 2,
+			"codename": "change_permission"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 6,
+		"fields": {
+			"name": "Can delete permission",
+			"content_type": 2,
+			"codename": "delete_permission"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 7,
+		"fields": {
+			"name": "Can add group",
+			"content_type": 3,
+			"codename": "add_group"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 8,
+		"fields": {
+			"name": "Can change group",
+			"content_type": 3,
+			"codename": "change_group"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 9,
+		"fields": {
+			"name": "Can delete group",
+			"content_type": 3,
+			"codename": "delete_group"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 10,
+		"fields": {
+			"name": "Can add user",
+			"content_type": 4,
+			"codename": "add_user"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 11,
+		"fields": {
+			"name": "Can change user",
+			"content_type": 4,
+			"codename": "change_user"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 12,
+		"fields": {
+			"name": "Can delete user",
+			"content_type": 4,
+			"codename": "delete_user"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 13,
+		"fields": {
+			"name": "Can add content type",
+			"content_type": 5,
+			"codename": "add_contenttype"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 14,
+		"fields": {
+			"name": "Can change content type",
+			"content_type": 5,
+			"codename": "change_contenttype"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 15,
+		"fields": {
+			"name": "Can delete content type",
+			"content_type": 5,
+			"codename": "delete_contenttype"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 16,
+		"fields": {
+			"name": "Can add session",
+			"content_type": 6,
+			"codename": "add_session"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 17,
+		"fields": {
+			"name": "Can change session",
+			"content_type": 6,
+			"codename": "change_session"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 18,
+		"fields": {
+			"name": "Can delete session",
+			"content_type": 6,
+			"codename": "delete_session"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 19,
+		"fields": {
+			"name": "Can add Host Inspection",
+			"content_type": 7,
+			"codename": "add_inspection"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 20,
+		"fields": {
+			"name": "Can change Host Inspection",
+			"content_type": 7,
+			"codename": "change_inspection"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 21,
+		"fields": {
+			"name": "Can delete Host Inspection",
+			"content_type": 7,
+			"codename": "delete_inspection"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 22,
+		"fields": {
+			"name": "Can add Vulnerability detected by inspection",
+			"content_type": 8,
+			"codename": "add_inspectionvulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 23,
+		"fields": {
+			"name": "Can change Vulnerability detected by inspection",
+			"content_type": 8,
+			"codename": "change_inspectionvulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 24,
+		"fields": {
+			"name": "Can delete Vulnerability detected by inspection",
+			"content_type": 8,
+			"codename": "delete_inspectionvulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 25,
+		"fields": {
+			"name": "Can add host",
+			"content_type": 9,
+			"codename": "add_host"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 26,
+		"fields": {
+			"name": "Can change host",
+			"content_type": 9,
+			"codename": "change_host"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 27,
+		"fields": {
+			"name": "Can delete host",
+			"content_type": 9,
+			"codename": "delete_host"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 28,
+		"fields": {
+			"name": "Can add project",
+			"content_type": 10,
+			"codename": "add_project"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 29,
+		"fields": {
+			"name": "Can change project",
+			"content_type": 10,
+			"codename": "change_project"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 30,
+		"fields": {
+			"name": "Can delete project",
+			"content_type": 10,
+			"codename": "delete_project"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 31,
+		"fields": {
+			"name": "Can add Network Address",
+			"content_type": 11,
+			"codename": "add_networkaddress"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 32,
+		"fields": {
+			"name": "Can change Network Address",
+			"content_type": 11,
+			"codename": "change_networkaddress"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 33,
+		"fields": {
+			"name": "Can delete Network Address",
+			"content_type": 11,
+			"codename": "delete_networkaddress"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 34,
+		"fields": {
+			"name": "Can add script",
+			"content_type": 12,
+			"codename": "add_script"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 35,
+		"fields": {
+			"name": "Can change script",
+			"content_type": 12,
+			"codename": "change_script"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 36,
+		"fields": {
+			"name": "Can delete script",
+			"content_type": 12,
+			"codename": "delete_script"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 37,
+		"fields": {
+			"name": "Can add Script Category",
+			"content_type": 13,
+			"codename": "add_scriptcategory"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 38,
+		"fields": {
+			"name": "Can change Script Category",
+			"content_type": 13,
+			"codename": "change_scriptcategory"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 39,
+		"fields": {
+			"name": "Can delete Script Category",
+			"content_type": 13,
+			"codename": "delete_scriptcategory"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 40,
+		"fields": {
+			"name": "Can add Script Trigger",
+			"content_type": 14,
+			"codename": "add_trigger"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 41,
+		"fields": {
+			"name": "Can change Script Trigger",
+			"content_type": 14,
+			"codename": "change_trigger"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 42,
+		"fields": {
+			"name": "Can delete Script Trigger",
+			"content_type": 14,
+			"codename": "delete_trigger"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 43,
+		"fields": {
+			"name": "Can add Trigger Parameter",
+			"content_type": 15,
+			"codename": "add_triggerparameter"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 44,
+		"fields": {
+			"name": "Can change Trigger Parameter",
+			"content_type": 15,
+			"codename": "change_triggerparameter"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 45,
+		"fields": {
+			"name": "Can delete Trigger Parameter",
+			"content_type": 15,
+			"codename": "delete_triggerparameter"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 46,
+		"fields": {
+			"name": "Can add Vulnerability",
+			"content_type": 16,
+			"codename": "add_vulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 47,
+		"fields": {
+			"name": "Can change Vulnerability",
+			"content_type": 16,
+			"codename": "change_vulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 48,
+		"fields": {
+			"name": "Can delete Vulnerability",
+			"content_type": 16,
+			"codename": "delete_vulnerability"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 49,
+		"fields": {
+			"name": "Can add Vulnerability Category",
+			"content_type": 17,
+			"codename": "add_vulnerabilitycategory"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 50,
+		"fields": {
+			"name": "Can change Vulnerability Category",
+			"content_type": 17,
+			"codename": "change_vulnerabilitycategory"
+		}
+	},
+	{
+		"model": "auth.permission",
+		"pk": 51,
+		"fields": {
+			"name": "Can delete Vulnerability Category",
+			"content_type": 17,
+			"codename": "delete_vulnerabilitycategory"
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 1,
+		"fields": {
+			"password": "pbkdf2_sha256$36000$mqdlT9aV0HBJ$PA3NOTeDhkl01ZRsP2VVJblBQJTqpOpIfQ5TzQ6Yhqk=",
+			"last_login": "2017-07-19T13:20:32.648Z",
+			"is_superuser": true,
+			"username": "admin",
+			"first_name": "",
+			"last_name": "",
+			"email": "admin@localhost",
+			"is_staff": true,
+			"is_active": true,
+			"date_joined": "2017-07-19T13:20:18.289Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	},
+	{
+		"model": "inspections.inspection",
+		"pk": 1,
+		"fields": {
+			"owner": 1,
+			"created": "2017-07-19T17:42:14.742Z",
+			"modified": "2017-07-19T18:14:01.528Z",
+			"status": 1,
+			"host": 1,
+			"network_addres": 1,
+			"script": 22,
+			"triggered_by": null,
+			"output": ""
+		}
+	},
+	{
+		"model": "projects.project",
+		"pk": 1,
+		"fields": {
+			"owner": 1,
+			"created": "2017-07-19T17:10:33.343Z",
+			"modified": "2017-07-19T18:13:34.633Z",
+			"name": "Sample Project",
+			"status": 1
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 1,
+		"fields": {
+			"action_time": "2017-07-19T13:20:55.619Z",
+			"user": 1,
+			"content_type": 17,
+			"object_id": "1",
+			"object_repr": "Injections",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 2,
+		"fields": {
+			"action_time": "2017-07-19T13:21:27.606Z",
+			"user": 1,
+			"content_type": 17,
+			"object_id": "2",
+			"object_repr": "Cross-site Attacks",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 3,
+		"fields": {
+			"action_time": "2017-07-19T13:21:48.504Z",
+			"user": 1,
+			"content_type": 17,
+			"object_id": "3",
+			"object_repr": "Denial of Service",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 4,
+		"fields": {
+			"action_time": "2017-07-19T13:21:56.739Z",
+			"user": 1,
+			"content_type": 17,
+			"object_id": "4",
+			"object_repr": "Buffer Attacks",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 5,
+		"fields": {
+			"action_time": "2017-07-19T13:25:12.791Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "1",
+			"object_repr": "SQL Injection",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 6,
+		"fields": {
+			"action_time": "2017-07-19T13:26:07.181Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "2",
+			"object_repr": "Command Injection",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 7,
+		"fields": {
+			"action_time": "2017-07-19T13:29:27.751Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "3",
+			"object_repr": "Cross-site Scripting (XSS)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 8,
+		"fields": {
+			"action_time": "2017-07-19T13:30:27.498Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "4",
+			"object_repr": "Cross-site request forgery (CSRF)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 9,
+		"fields": {
+			"action_time": "2017-07-19T13:31:50.984Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "5",
+			"object_repr": "Simple Denial of Service (DOS)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 10,
+		"fields": {
+			"action_time": "2017-07-19T13:34:18.179Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "6",
+			"object_repr": "Distributed Denial of Service (DDoS)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 11,
+		"fields": {
+			"action_time": "2017-07-19T13:34:29.827Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "5",
+			"object_repr": "Denial of Service (DoS)",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 12,
+		"fields": {
+			"action_time": "2017-07-19T13:36:35.370Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "7",
+			"object_repr": "Slowloris",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 13,
+		"fields": {
+			"action_time": "2017-07-19T13:42:02.749Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "8",
+			"object_repr": "Buffer Overflow",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 14,
+		"fields": {
+			"action_time": "2017-07-19T13:48:18.702Z",
+			"user": 1,
+			"content_type": 13,
+			"object_id": "1",
+			"object_repr": "NMap NSE Scripts",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 15,
+		"fields": {
+			"action_time": "2017-07-19T13:48:35.651Z",
+			"user": 1,
+			"content_type": 13,
+			"object_id": "2",
+			"object_repr": "NMap Port Scanners",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 16,
+		"fields": {
+			"action_time": "2017-07-19T13:48:53.399Z",
+			"user": 1,
+			"content_type": 13,
+			"object_id": "3",
+			"object_repr": "SQLMap Scripts",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 17,
+		"fields": {
+			"action_time": "2017-07-19T13:49:15.420Z",
+			"user": 1,
+			"content_type": 13,
+			"object_id": "4",
+			"object_repr": "XSSer Scripts",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 18,
+		"fields": {
+			"action_time": "2017-07-19T14:00:15.852Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "1",
+			"object_repr": "NMap Intense Scan, TCP well-known ports",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 19,
+		"fields": {
+			"action_time": "2017-07-19T14:01:05.249Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "2",
+			"object_repr": "NMap Intense Scan, TCP registered ports",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 20,
+		"fields": {
+			"action_time": "2017-07-19T14:02:51.880Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "3",
+			"object_repr": "NMap Intense Scan, TCP ephemeral ports",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 21,
+		"fields": {
+			"action_time": "2017-07-19T14:03:37.541Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "4",
+			"object_repr": "NMap Intense Scan, all TCP ports",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 22,
+		"fields": {
+			"action_time": "2017-07-19T14:03:46.725Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "3",
+			"object_repr": "NMap Intense Scan, all TCP ephemeral ports",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 23,
+		"fields": {
+			"action_time": "2017-07-19T14:03:52.102Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "2",
+			"object_repr": "NMap Intense Scan, all TCP registered ports",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 24,
+		"fields": {
+			"action_time": "2017-07-19T14:03:58.930Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "1",
+			"object_repr": "NMap Intense Scan, all TCP well-known ports",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 25,
+		"fields": {
+			"action_time": "2017-07-19T14:05:58.528Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "5",
+			"object_repr": "NMap HTTP SQL Injection",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 26,
+		"fields": {
+			"action_time": "2017-07-19T14:09:52.630Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "6",
+			"object_repr": "NMap DNS Blacklist",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 27,
+		"fields": {
+			"action_time": "2017-07-19T14:11:59.137Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "7",
+			"object_repr": "NMap Finger User Retrieval",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 28,
+		"fields": {
+			"action_time": "2017-07-19T14:12:59.373Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "8",
+			"object_repr": "NMap Firewall Bypass",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 29,
+		"fields": {
+			"action_time": "2017-07-19T14:14:35.702Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "9",
+			"object_repr": "NMap HTTP Apache Negotiation",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 30,
+		"fields": {
+			"action_time": "2017-07-19T14:15:57.082Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "10",
+			"object_repr": "NMap CSRF Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 31,
+		"fields": {
+			"action_time": "2017-07-19T14:17:10.162Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "11",
+			"object_repr": "NMap HTTP Methods",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 32,
+		"fields": {
+			"action_time": "2017-07-19T14:18:59.347Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "12",
+			"object_repr": "NMap Transversal Directory",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 33,
+		"fields": {
+			"action_time": "2017-07-19T14:20:27.060Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "13",
+			"object_repr": "NMap IP Forwarding Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 34,
+		"fields": {
+			"action_time": "2017-07-19T14:21:25.691Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "12",
+			"object_repr": "NMap Transversal Directory",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 35,
+		"fields": {
+			"action_time": "2017-07-19T14:21:34.675Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "10",
+			"object_repr": "NMap CSRF Scan",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 36,
+		"fields": {
+			"action_time": "2017-07-19T14:21:46.470Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "11",
+			"object_repr": "NMap HTTP Methods",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 37,
+		"fields": {
+			"action_time": "2017-07-19T14:21:56.733Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "9",
+			"object_repr": "NMap HTTP Apache Negotiation",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 38,
+		"fields": {
+			"action_time": "2017-07-19T14:22:30.830Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "12",
+			"object_repr": "NMap Transversal Directory",
+			"action_flag": 2,
+			"change_message": "[]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 39,
+		"fields": {
+			"action_time": "2017-07-19T14:24:22.939Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "14",
+			"object_repr": "XSSer Simple HTTP Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 40,
+		"fields": {
+			"action_time": "2017-07-19T14:24:39.234Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "15",
+			"object_repr": "XSSer Simple HTTPS Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 41,
+		"fields": {
+			"action_time": "2017-07-19T14:25:48.986Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "16",
+			"object_repr": "NMap DoS Slowloris",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 42,
+		"fields": {
+			"action_time": "2017-07-19T14:28:24.637Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "17",
+			"object_repr": "SQLMap Info",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 43,
+		"fields": {
+			"action_time": "2017-07-19T14:28:56.280Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "18",
+			"object_repr": "SQLMap Database Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 44,
+		"fields": {
+			"action_time": "2017-07-19T14:29:34.636Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "19",
+			"object_repr": "SQLMap Table Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 45,
+		"fields": {
+			"action_time": "2017-07-19T14:30:26.521Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "20",
+			"object_repr": "SQLMap Column Scan",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 46,
+		"fields": {
+			"action_time": "2017-07-19T14:31:17.777Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "21",
+			"object_repr": "SQLMap Dump Data",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 47,
+		"fields": {
+			"action_time": "2017-07-19T14:34:03.893Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "22",
+			"object_repr": "NMap Intense Scan, common HTTP ports",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 48,
+		"fields": {
+			"action_time": "2017-07-19T17:10:33.345Z",
+			"user": 1,
+			"content_type": 10,
+			"object_id": "1",
+			"object_repr": "Sample Project",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 49,
+		"fields": {
+			"action_time": "2017-07-19T17:11:23.250Z",
+			"user": 1,
+			"content_type": 9,
+			"object_id": "1",
+			"object_repr": "DVWA",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Network Address\", \"object\": \"IPv4: 10.0.75.1\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 50,
+		"fields": {
+			"action_time": "2017-07-19T17:17:51.214Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "1",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 80\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 51,
+		"fields": {
+			"action_time": "2017-07-19T17:18:15.330Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "2",
+			"object_repr": "Matches against a RegEx pattern: (443\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 443\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 52,
+		"fields": {
+			"action_time": "2017-07-19T17:18:42.899Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "3",
+			"object_repr": "Matches against a RegEx pattern: (8000\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 8000\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 53,
+		"fields": {
+			"action_time": "2017-07-19T17:19:05.016Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "4",
+			"object_repr": "Matches against a RegEx pattern: (8080\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 8080\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 54,
+		"fields": {
+			"action_time": "2017-07-19T17:21:03.147Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "5",
+			"object_repr": "Matches against a RegEx pattern: Possible sqli for",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 55,
+		"fields": {
+			"action_time": "2017-07-19T17:23:50.888Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "6",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 80\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 56,
+		"fields": {
+			"action_time": "2017-07-19T17:24:08.608Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "7",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 80\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 57,
+		"fields": {
+			"action_time": "2017-07-19T17:24:23.644Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "8",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 80\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 58,
+		"fields": {
+			"action_time": "2017-07-19T17:25:30.899Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "9",
+			"object_repr": "NMap HTTP Apache Negotiation",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 59,
+		"fields": {
+			"action_time": "2017-07-19T17:26:11.753Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "9",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 60,
+		"fields": {
+			"action_time": "2017-07-19T17:26:50.095Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "16",
+			"object_repr": "NMap DoS Slowloris",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 61,
+		"fields": {
+			"action_time": "2017-07-19T17:26:58.438Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "10",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Trigger Parameter\", \"object\": \"port: 80\"}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 62,
+		"fields": {
+			"action_time": "2017-07-19T17:27:50.027Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "11",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 63,
+		"fields": {
+			"action_time": "2017-07-19T17:28:07.629Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "9",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"script\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 64,
+		"fields": {
+			"action_time": "2017-07-19T17:28:23.875Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "10",
+			"object_repr": "Matches against a RegEx pattern: (80\\/tcp)(\\s)*(open)",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"script\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 65,
+		"fields": {
+			"action_time": "2017-07-19T17:29:47.934Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "12",
+			"object_repr": "Matches against a RegEx pattern: mod_negotiation enabled",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 66,
+		"fields": {
+			"action_time": "2017-07-19T17:30:19.868Z",
+			"user": 1,
+			"content_type": 17,
+			"object_id": "5",
+			"object_repr": "Data exposure",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 67,
+		"fields": {
+			"action_time": "2017-07-19T17:31:02.816Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "9",
+			"object_repr": "HTTP File Spider",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 68,
+		"fields": {
+			"action_time": "2017-07-19T17:31:14.678Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "12",
+			"object_repr": "Matches against a RegEx pattern: mod_negotiation enabled",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"associated_vulnerability\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 69,
+		"fields": {
+			"action_time": "2017-07-19T17:32:05.756Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "13",
+			"object_repr": "Matches against a RegEx pattern: http-csrf:",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 70,
+		"fields": {
+			"action_time": "2017-07-19T17:34:56.304Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "14",
+			"object_repr": "Matches against a RegEx pattern: http-passwd: Directory traversal found",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 71,
+		"fields": {
+			"action_time": "2017-07-19T17:35:11.364Z",
+			"user": 1,
+			"content_type": 16,
+			"object_id": "10",
+			"object_repr": "HTTP Directory Traversal",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 72,
+		"fields": {
+			"action_time": "2017-07-19T17:35:21.242Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "14",
+			"object_repr": "Matches against a RegEx pattern: http-passwd: Directory traversal found",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"associated_vulnerability\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 73,
+		"fields": {
+			"action_time": "2017-07-19T17:36:50.988Z",
+			"user": 1,
+			"content_type": 12,
+			"object_id": "12",
+			"object_repr": "NMap Traversal Directory",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 74,
+		"fields": {
+			"action_time": "2017-07-19T17:41:11.895Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "15",
+			"object_repr": "Matches against a RegEx pattern: LIKELY VULNERABLE",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 75,
+		"fields": {
+			"action_time": "2017-07-19T17:41:28.871Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "15",
+			"object_repr": "Matches against a RegEx pattern: LIKELY VULNERABLE",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"associated_vulnerability\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 76,
+		"fields": {
+			"action_time": "2017-07-19T17:42:14.746Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "1",
+			"object_repr": "#1 Queued: DVWA",
+			"action_flag": 1,
+			"change_message": "[{\"added\": {}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 77,
+		"fields": {
+			"action_time": "2017-07-19T17:47:52.474Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "15",
+			"object_repr": "Matches against a RegEx pattern: (LIKELY VULNERABLE)*(State: VULNERABLE)*",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"match\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 78,
+		"fields": {
+			"action_time": "2017-07-19T17:48:07.893Z",
+			"user": 1,
+			"content_type": 14,
+			"object_id": "15",
+			"object_repr": "Matches against a RegEx pattern: (State: LIKELY VULNERABLE)*(State: VULNERABLE)*",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"match\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 79,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.867Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "8",
+			"object_repr": "#8 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 80,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.880Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "7",
+			"object_repr": "#7 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 81,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.883Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "6",
+			"object_repr": "#6 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 82,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.887Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "5",
+			"object_repr": "#5 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 83,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.891Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "4",
+			"object_repr": "#4 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 84,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.895Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "3",
+			"object_repr": "#3 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 85,
+		"fields": {
+			"action_time": "2017-07-19T17:53:12.898Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "2",
+			"object_repr": "#2 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 86,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.937Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "15",
+			"object_repr": "#15 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 87,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.948Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "14",
+			"object_repr": "#14 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 88,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.952Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "13",
+			"object_repr": "#13 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 89,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.955Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "12",
+			"object_repr": "#12 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 90,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.958Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "11",
+			"object_repr": "#11 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 91,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.964Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "10",
+			"object_repr": "#10 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 92,
+		"fields": {
+			"action_time": "2017-07-19T18:02:57.967Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "9",
+			"object_repr": "#9 Executed: DVWA",
+			"action_flag": 3,
+			"change_message": ""
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 93,
+		"fields": {
+			"action_time": "2017-07-19T18:03:06.796Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "1",
+			"object_repr": "#1 Queued: DVWA",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"status\", \"output\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 94,
+		"fields": {
+			"action_time": "2017-07-19T18:13:34.635Z",
+			"user": 1,
+			"content_type": 10,
+			"object_id": "1",
+			"object_repr": "Sample Project",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"status\"]}}]"
+		}
+	},
+	{
+		"model": "admin.logentry",
+		"pk": 95,
+		"fields": {
+			"action_time": "2017-07-19T18:14:01.539Z",
+			"user": 1,
+			"content_type": 7,
+			"object_id": "1",
+			"object_repr": "#1 Queued: DVWA",
+			"action_flag": 2,
+			"change_message": "[{\"changed\": {\"fields\": [\"output\"]}}]"
+		}
+	}
+]
