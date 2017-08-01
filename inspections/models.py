@@ -28,7 +28,7 @@ class Inspection(OwnableMixin, TimeStampedModel):
     status = models.PositiveIntegerField('Status', choices=STATUS_CHOICES, default=STATUS_QUEUED)
     host = models.ForeignKey(Host, verbose_name='Target Host')
     network_addres = models.ForeignKey(NetworkAddress, verbose_name='Network Address', null=True, blank=True)
-    script = models.ForeignKey(Script, verbose_name='Executed Script')
+    script = models.ForeignKey(Script, verbose_name='Script')
     triggered_by = models.ForeignKey(Trigger, verbose_name='Triggered by', null=True, blank=True)
     output = models.TextField('Inspection Output', null=True, blank=True)
 
